@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-template <typename T>
+template <class T>
 class LinkedList {
 public:
     struct Node {
@@ -54,7 +54,7 @@ public:
                     break;
                 }
                 prev = temp;
-                temp = temp->next
+                temp = temp->next;
             }
 
             if(found){

@@ -10,6 +10,9 @@ public:
     string description;
     string dateCollected;
 
+    Evidence(){
+        
+    }
     Evidence(int i, string t, string dp, string da){
         id = i;
         type = t;
