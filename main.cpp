@@ -3,6 +3,8 @@
 #include "LinkedList.h"
 #include "Crime.h"
 #include "Queue.h"
+#include "Suspect.h"
+#include "Stack.h"
 using namespace std;
 
 int main() {
@@ -41,6 +43,27 @@ int main() {
 
     cout << "\n--- Remaining Cases ---\n";
     crimeQueue.display();
+
+    Stack<Suspect> suspectStack;
+
+    // Add suspects (push)
+    suspectStack.push(Suspect(1, "Ali Khan", 32, "Lahore", "Under Investigation"));
+    suspectStack.push(Suspect(2, "Bilal Ahmed", 27, "Karachi", "Arrested"));
+    suspectStack.push(Suspect(3, "Umar Farooq", 40, "Faisalabad", "Under Surveillance"));
+
+    cout << "\n--- Current Suspect Records ---\n";
+    suspectStack.display();
+
+    // Peek at top suspect
+    cout << "\n--- Most Recent Suspect ---\n";
+    suspectStack.peek();
+
+    // Undo last added suspect
+    cout << "\nUndoing last action (removing last suspect)...\n";
+    suspectStack.pop();
+
+    cout << "\n--- Updated Suspect Records ---\n";
+    suspectStack.display();
 
     return 0;
 }
