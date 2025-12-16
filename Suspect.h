@@ -24,7 +24,7 @@ public:
     }
 
     // Display suspect details
-    void display() const {
+    void display(){
         cout << "ID: " << id
              << " | Name: " << name
              << " | Age: " << age

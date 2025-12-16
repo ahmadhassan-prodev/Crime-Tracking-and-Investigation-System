@@ -22,7 +22,7 @@ public:
     }
 
     // Add new item at end
-    void insertEnd(T data) {
+    void insertAtEnd(T data) {
         Node* newNode = new Node(data);
         if (head == nullptr) {
             head = tail = newNode;
@@ -67,6 +67,32 @@ public:
                 cout<<"Evidence not found!"<<endl;
             }
         }
+    }
+
+    bool removeById(int evidenceID) {
+        if (!head) return false;
+
+        if (head->data.id == evidenceID) {
+            Node* temp = head;
+            head = head->next;
+            delete temp;
+            return true;
+        }
+
+        Node* prev = head;
+        Node* curr = head->next;
+
+        while (curr) {
+            if (curr->data.id == evidenceID) {
+                prev->next = curr->next;
+                delete curr;
+                return true;
+            }
+            prev = curr;
+            curr = curr->next;
+        }
+
+        return false;
     }
 
     // Display all items

@@ -8,19 +8,21 @@ private:
     struct Node {
         T data;
         Node* next;
-        Node(T d){
+
+        Node(T d) {
             data = d;
             next = nullptr;
         }
     };
 
     Node* top;
+
 public:
-    Stack(){
+    Stack() {
         top = nullptr;
     }
 
-    // Add new item
+    // PUSH
     void push(T data) {
         Node* newNode = new Node(data);
         if(!top){
@@ -32,46 +34,21 @@ public:
         }
     }
 
-    // Remove the last added item
-    void pop() {
-        if (!top) {
-            cout << "Stack is empty. Nothing to undo.\n";
-        }
-        else{
-            Node* temp = top;
-            top = top->next;
-            delete temp;
-        }
-    }
-
-    // View top item (PEEK)
-    void peek() const {
+    // POP (returns removed item)
+    bool pop(T &removedData) {
         if (!top) {
             cout << "Stack is empty.\n";
+            return false;
         }
-        else{
-            cout << "Most recent suspect:\n";
-            top->data.display();
-        }
+
+        Node* temp = top;
+        removedData = top->data;
+        top = top->next;
+        delete temp;
+        return true;
     }
 
-    // Display all suspects
-    void display() const {
-        if (!top) {
-            cout << "No suspects in record.\n";
-        }
-        else{
-            Node* temp = top;
-            cout << "Current Suspect Stack (Top to Bottom):\n";
-            while (temp) {
-                temp->data.display();
-                temp = temp->next;
-            }
-        }
-    }
-
-    // Check if stack is empty
-    bool isEmpty() {
+    bool isEmpty() const {
         return top == nullptr;
     }
 };

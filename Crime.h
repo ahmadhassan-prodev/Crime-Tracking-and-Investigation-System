@@ -1,4 +1,6 @@
 #pragma once
+#include "LinkedList.h"
+#include "Evidence.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -10,26 +12,28 @@ public:
     string location;
     string dateReported;
     string status;
+    int priority;   
+    Crime() {}
+    
+    LinkedList<Evidence> evidenceList;
 
-    Crime(){
-
-    }
-
-    Crime(int id, string t, string loc, string d, string s)
+    Crime(int id, string t, string loc, string d, string s, int p)
     {
         caseID = id;
         type = t;
         location = loc;
         dateReported = d;
         status = s;
+        priority = p;
     }
 
-    // Display case info
     void display() const {
         cout << "Case ID: " << caseID
              << " | Type: " << type
              << " | Location: " << location
              << " | Date: " << dateReported
-             << " | Status: " << status << endl;
+             << " | Status: " << status
+             << " | Priority: " << priority
+             << endl;
     }
 };

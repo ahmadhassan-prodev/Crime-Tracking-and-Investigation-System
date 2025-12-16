@@ -1,14 +1,15 @@
 #pragma once
 #include <iostream>
+#include "Crime.h"
 using namespace std;
 
-template <class T>
+// template <class T>
 class Queue {
 public:
     struct Node {
-        T data;
+        Crime data;
         Node* next;
-        Node(T d){
+        Node(Crime d){
             data = d;
             next = nullptr;
         }
@@ -23,7 +24,7 @@ public:
     }
 
     // Add a new case to the queue
-    void enqueue(T data) {
+    void enqueue(Crime data) {
         Node* newNode = new Node(data);
         if (rear == nullptr) {
             front = rear = newNode;
@@ -49,6 +50,34 @@ public:
         }
         
     }
+
+    Crime* search(int crimeID) {
+        Node* temp = front;
+        while (temp) {
+            if (temp->data.caseID == crimeID) {
+                return &(temp->data);
+            }
+            temp = temp->next;
+        }
+        return nullptr;
+    }
+
+    bool removeRear() {
+        if (!front) return false;
+        if (front == rear) {
+            delete front;
+            front = rear = nullptr;
+            return true;
+        }
+
+        Node* temp = front;
+        while (temp->next != rear) temp = temp->next;
+        delete rear;
+        rear = temp;
+        rear->next = nullptr;
+        return true;
+    }
+
 
     // Display all pending cases
     void display() const {
